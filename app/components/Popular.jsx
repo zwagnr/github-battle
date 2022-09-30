@@ -1,21 +1,10 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 function LanguagesNav({ selected, onUpdateLanguage }) {
-  const languages = [
-    'All',
-    'CSS',
-    'Javascript',
-    'Ruby',
-    'Java',
-    'Rust',
-    'Python',
-    'GO',
-  ];
+  const languages = ['All', 'CSS', 'Javascript', 'Ruby', 'Java', 'Rust', 'Python', 'GO'];
   return (
-    <select
-      onChange={(e) => onUpdateLanguage(e.target.value)}
-      selected={selected}
-    >
+    <select onChange={(e) => onUpdateLanguage(e.target.value)} selected={selected}>
       {languages.map((language) => (
         <option key={language} value={language}>
           {language}
@@ -24,6 +13,11 @@ function LanguagesNav({ selected, onUpdateLanguage }) {
     </select>
   );
 }
+
+LanguagesNav.propTypes = {
+  selected: PropTypes.string.isRequired,
+  onUpdateLanguage: PropTypes.func.isRequired,
+};
 
 export default class Popular extends React.Component {
   constructor(props) {
@@ -43,10 +37,7 @@ export default class Popular extends React.Component {
     const { selectedLanguage } = this.state;
     return (
       <main>
-        <LanguagesNav
-          selected={selectedLanguage}
-          onUpdateLanguage={this.updateLanguage}
-        />
+        <LanguagesNav selected={selectedLanguage} onUpdateLanguage={this.updateLanguage} />
 
         {JSON.stringify(this.state, null, 2)}
       </main>
