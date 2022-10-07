@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { fetchPopularRepos } from '../utils/api';
-import Table  from './Table';
+import Table from './Table';
 
 function LanguagesNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'CSS', 'Javascript', 'Ruby', 'Java', 'Rust', 'Python', 'GO'];
