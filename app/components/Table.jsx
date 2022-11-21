@@ -131,7 +131,7 @@ Table.propTypes = {
   repos: PropTypes.array.isRequired,
 };
 
-Tooltip.PropTypes = {
+Tooltip.propTypes = {
   children: PropTypes.node.isRequired,
   element: PropTypes.node.isRequired,
 };
