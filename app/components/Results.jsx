@@ -2,6 +2,8 @@ import React from 'react';
 import { battle } from '../utils/api';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
+import withSearchParams from './withSearchParams';
+import { Link } from 'react-router-dom';
 
 function Card({ profile }) {
   const { login, avatar_url, html_url, followers, following, public_repos, location, company } =
@@ -52,7 +54,7 @@ Card.propTypes = {
   }).isRequired,
 };
 
-export default class Results extends React.Component {
+class Results extends React.Component {
   constructor(props) {
     super(props);
 
@@ -64,7 +66,9 @@ export default class Results extends React.Component {
     };
   }
   componentDidMount() {
-    const { playerOne, playerTwo } = this.props;
+    const sp = this.props.router.searchParams;
+    const playerOne = sp.get('playerOne');
+    const playerTwo = sp.get('playerTwo');
 
     battle([playerOne, playerTwo])
       .then((players) => {
@@ -97,6 +101,9 @@ export default class Results extends React.Component {
       <main className='animate-in stack main-stack'>
         <div className='split'>
           <h1>Results</h1>
+          <Link to='/battle' className='btn secondary'>
+            Reset
+          </Link>
         </div>
         <section className='grid'>
           <article className='results-container'>
@@ -115,6 +122,7 @@ export default class Results extends React.Component {
             <p className='results'>
               <span>
                 {winner.score === loser.score ? 'Tie' : 'Loser'}
+                {' '}
                 {loser.score.toLocaleString()}
               </span>
             </p>
@@ -124,3 +132,5 @@ export default class Results extends React.Component {
     );
   }
 }
+
+export default withSearchParams(Results);

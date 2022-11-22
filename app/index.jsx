@@ -5,6 +5,7 @@ import Battle from './components/Battle';
 import Popular from './components/Popular';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
+import Results from './components/Results';
 
 class App extends React.Component {
   constructor(prop) {
@@ -29,6 +30,7 @@ class App extends React.Component {
             <Routes>
               <Route path='/' element={<Popular />} />
               <Route path='/battle' element={<Battle />} />
+              <Route path='/results' element={<Results />} />
             </Routes>
           </div>
         </div>
