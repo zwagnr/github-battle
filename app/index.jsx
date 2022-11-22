@@ -4,13 +4,28 @@ import './index.css';
 import Battle from './components/Battle';
 import Popular from './components/Popular';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Nav from './components/Nav';
 
 class App extends React.Component {
+  constructor(prop) {
+    super(prop);
+
+    this.state = {
+      theme: 'light',
+    };
+    this.toggleTheme = this.toggleTheme.bind(this);
+  }
+  toggleTheme() {
+    this.setState(({ theme }) => ({
+      theme: theme === 'light' ? 'dark' : 'light',
+    }));
+  }
   render() {
     return (
       <Router>
-        <div className='light'>
+        <div className={this.state.theme}>
           <div className='container'>
+            <Nav theme={this.state.theme} toggleTheme={this.toggleTheme} />
             <Routes>
               <Route path='/' element={<Popular />} />
               <Route path='/battle' element={<Battle />} />
